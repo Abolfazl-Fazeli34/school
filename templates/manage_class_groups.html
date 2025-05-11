@@ -1,0 +1,164 @@
+
+{% include 'header.html' %}
+
+    <style>
+    body {
+        font-family: 'Vazirmatn', sans-serif;
+        background: #121212;
+        color: #f1f1f1;
+    }
+    .container {
+        margin-top: 60px;
+    }
+    h2 {
+        font-size: 2rem;
+        color: #fff;
+        font-weight: 600;
+    }
+    .card {
+        background-color: #1a1a1a;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    .card-header {
+        background: linear-gradient(45deg, #ff4d4d, #ff0000); /* تغییر به رنگ قرمز */
+        color: #fff;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+    .card-body {
+        background-color: #2a2a2a;
+        color: #ddd;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    .card-body input,
+    .card-body select,
+    .card-body textarea {
+        background-color: #333;
+        border: 1px solid #444;
+        color: #fff;
+    }
+    .card-body input:focus,
+    .card-body select:focus,
+    .card-body textarea:focus {
+        border-color: #ff4d4d; /* رنگ قرمز برای حالت فوکوس */
+        outline: none;
+    }
+    .btn-custom {
+        background-color: #ff4d4d; /* قرمز برای دکمه */
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 24px;
+        font-size: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+    }
+    .btn-custom:hover {
+        background-color: #ff0000; /* قرمز تیره برای هاور */
+        transform: translateY(-2px);
+    }
+    .list-group-item {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+    }
+    .list-group-item:hover {
+        background-color: #ff4d4d; /* قرمز برای هاور */
+        cursor: pointer;
+    }
+    .footer {
+        background-color: #121212;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        margin-top: 50px;
+    }
+</style>
+<br><br><br><br>
+<div class="container mt-5">
+  <h2 class="text-center text-light mb-5 animate__animated animate__fadeIn animate__delay-1s">مدیریت گروه‌های درسی</h2>
+
+  <!-- فرم ایجاد گروه جدید -->
+  <div class="card shadow-lg mb-5 animate__animated animate__fadeIn animate__delay-2s profile-card">
+    <div class="card-header bg-gradient text-white rounded-top">
+      <h5>ایجاد گروه درسی جدید</h5>
+    </div>
+    <div class="card-body">
+      <form method="post" class="animate__animated animate__fadeIn animate__delay-2s" id="classGroupForm">
+        {% csrf_token %}
+
+        <div class="form-group mb-4">
+          <label for="id_name" class="text-light">نام گروه درسی</label>
+          <div class="input-group">
+            {{ form.name }}
+          </div>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="id_start_time" class="text-light">زمان شروع</label>
+          <div class="input-group">
+            <input type="datetime-local" id="id_start_time" name="start_time" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="id_end_time" class="text-light">زمان پایان</label>
+          <div class="input-group">
+            <input type="datetime-local" id="id_end_time" name="end_time" class="form-control">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-custom btn-lg btn-block mt-4 shadow-lg hover-shadow">ایجاد گروه</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- نمایش گروه‌های درسی موجود -->
+  <div class="card shadow-lg animate__animated animate__fadeIn animate__delay-3s profile-card">
+    <div class="card-header bg-gradient text-white rounded-top">
+      <h5>گروه‌های درسی شما</h5>
+    </div>
+    <div class="card-body">
+      {% if groups %}
+        <ul class="list-group list-group-flush">
+          {% for group in groups %}
+            <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center mb-3 shadow-sm">
+              <div>
+                <strong>{{ group.name }}</strong>
+                <p>{{ group.start_time|date:"H:i d-m-Y" }} تا {{ group.end_time|date:"H:i d-m-Y" }}</p>
+                <small>مدت زمان حاضری: {{ group.duration }} دقیقه</small>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="alert alert-warning text-center">
+          <i class="fas fa-exclamation-triangle"></i> هیچ گروه درسی موجود نیست.
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+    // تنظیم زمان شروع به زمان حال در فرمت datetime-local
+    document.addEventListener("DOMContentLoaded", function () {
+        const startTimeInput = document.getElementById("id_start_time");
+        if (startTimeInput) {
+            const now = new Date();
+            const isoString = now.toISOString(); // تبدیل به فرمت ISO
+            const localString = isoString.slice(0, 16); // تغییر فرمت به 'YYYY-MM-DDTHH:MM'
+            startTimeInput.value = localString; // تنظیم مقدار فیلد
+        }
+    });
+</script>
+{% include 'footer.html' %}
+

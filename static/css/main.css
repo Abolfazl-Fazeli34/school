@@ -1,0 +1,474 @@
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .navbar, .footer {
+            background-color: #1f1f1f;
+        }
+        .section {
+            padding: 60px 0;
+        }
+        .btn-custom {
+            background-color: #0077b6;
+            color: #fff;
+        }
+        .btn-custom:hover {
+            background-color: #0077b6;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border: none;
+            color: #fff;
+        }
+        .card:hover {
+            background-color: #2a2a2a;
+        }
+        .feature-card {
+            background-color: #1e1e1e;
+            border: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+        }
+        .feature-card:hover {
+            background-color: #2b2b2b;
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(103, 58, 183, 0.3);
+        }
+        .icon-hover {
+            transition: color 0.3s ease;
+        }
+        .feature-card:hover .icon-hover {
+            color: #b388ff;
+        }
+        .glass-nav {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 999;
+        }
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 2px;
+            width: 0%;
+            background: linear-gradient(to left, #0077b6, #4a00e0);
+            transition: width 0.4s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+            right: auto;
+        }
+        .nav-link.active {
+            color: #0077b6 !important;
+        }
+        .navbar-collapse {
+            transition: all 0.5s ease;
+        }
+        .navbar-toggler {
+            border: none;
+        }
+        .student-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid #0d6efd;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease;
+          }
+          .student-img:hover {
+            transform: scale(1.08);
+          }
+        
+          .carousel-item {
+            padding: 30px 0;
+            transition: transform 0.5s ease-in-out;
+          }
+        
+          @media (max-width: 768px) {
+            .student-img {
+              width: 100px;
+              height: 100px;
+            }
+          }
+          .transition-width {
+            transition: width 0.3s ease;
+          }
+        
+          .form-control:focus {
+            width: 300px !important;
+          }
+        
+          .collapse {
+            transition: height 0.3s ease;
+          }
+        
+          .btn-outline-light {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+          }
+        
+          .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.7);
+          }
+          /* انیمیشن باز شدن منو */
+        .animate__fadeIn {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* استایل برای آیکن پیام جدید */
+        .position-absolute {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* استایل برای منو */
+        .dropdown-menu {
+            border-radius: 10px;
+            padding: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* تغییر رنگ آیکن و متن در حالت hover */
+        .dropdown-item:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-item.d-flex {
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-item i {
+            font-size: 1.2rem;
+        }
+        
+        /* انیمیشن hover برای آیکن */
+        .dropdown-item i {
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-item:hover i {
+            transform: scale(1.1);
+        }
+        .search-box {
+            transition: all 0.3s ease-in-out;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+    
+        .search-box:focus {
+            width: 300px;
+            background-color: #ffffff;
+            border: 2px solid #0066cc;
+        }
+    
+        .search-box::placeholder {
+            color: #aaa;
+        }
+    
+        .search-box:focus::placeholder {
+            color: #0066cc;
+        }
+    
+        .btn-outline-light {
+            border-radius: 50%;
+            padding: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    
+        .btn-outline-light:hover {
+            background-color: #0066cc;
+            color: #fff;
+        }
+    
+        .collapse {
+            transition: max-height 0.3s ease-in-out;
+        }
+    
+        @media (max-width: 768px) {
+            .search-box {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            width: 0;
+            padding: 10px 20px;
+            padding-left: 40px; /* برای اینکه فضای کافی برای آیکون فراهم شود */
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            background-color: #f1f1f1;
+            color: #333;
+            outline: none;
+            transition: width 0.5s ease, padding 0.3s ease;
+        }
+        
+        .search-input:focus {
+            width: 300px;
+            padding: 10px 20px;
+            padding-left: 40px;
+            border-color: #3498db;
+            background-color: #ffffff;
+        }
+        
+        .search-button {
+            background-color: transparent;
+            border: none;
+            position: absolute;
+            left: 10px; /* قرار دادن آیکون در ابتدای input */
+            pointer-events: none; /* برای اینکه آیکون نتونه روی input تاثیر بذاره */
+            font-size: 20px;
+            color: #aaa;
+        }
+        
+        .search-button i {
+            color: #aaa;
+        }
+        
+        .search-button:hover i {
+            color: #3498db; /* تغییر رنگ هنگام hover */
+        }
+        
+        .suggestions-box {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 10;
+        }
+        
+        .suggestions-box.active {
+            display: block;
+        }
+        
+        .suggestions-box div {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        
+        .suggestions-box div:hover {
+            background-color: #f1f1f1;
+        }
+        .btn-neon-glow {
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: #fff;
+    /* کاهش شدت نور */
+    box-shadow: 0 0 5px #3b82f6, 0 0 15px #6366f1, 0 0 30px #6366f1; /* کاهش سایه و نور */
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-neon-glow:hover {
+    transform: scale(1.03);
+    /* کاهش شدت نور در هاور */
+    box-shadow: 0 0 10px #60a5fa, 0 0 30px #818cf8, 0 0 50px #818cf8; /* کاهش سایه و نور */
+  }
+
+  /* موج کلیک (Ripple) */
+  .ripple-btn {
+    cursor: pointer;
+  }
+
+  .ripple-effect {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes ripple-animation {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  /* افکت ripple هنگام کلیک */
+  .ripple-btn:active .ripple-effect {
+    top: var(--ripple-y);
+    left: var(--ripple-x);
+    width: 100px;
+    height: 100px;
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+  }
+  .scroll-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.scroll-content {
+  display: flex;
+  flex-wrap: nowrap;
+  animation: scroll-animation 10s linear infinite;
+}
+
+.scroll-item {
+  min-width: 250px;
+  margin-right: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes scroll-animation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+/* برای پس‌زمینه کارت و دکمه‌ها */
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    background: #fff;
+}
+
+.card-header {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 15px 15px 0 0;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.card-footer {
+    background-color: #f7f7f7;
+    border-radius: 0 0 15px 15px;
+}
+
+h3 {
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+}
+
+/* استایل برای دکمه‌ها */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 8px;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* استایل فرم و فیلدها */
+.form-group label {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+input, select, textarea {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 0.75rem;
+    width: 100%;
+    font-size: 1rem;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* استایل دکمه‌ها در صفحه */
+button[type="submit"] {
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* حاشیه و فضای سفید */
+.container {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+/* استایل آیکون‌ها یا متن‌های کوچک */
+.text-muted {
+    font-size: 0.9rem;
+}
+
+/* موبایل و نمایش ریسپانسیو */
+@media (max-width: 768px) {
+    .card {
+        margin-top: 30px;
+    }
+
+    .card-header {
+        font-size: 1.25rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

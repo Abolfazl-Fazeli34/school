@@ -1,0 +1,163 @@
+
+    {% include "header.html" %}
+    <style>
+        body {
+            background: #0e0e0e;
+            color: #f1f1f1;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #1c1c1c, #2a2a2a);
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .card-header {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            box-shadow: 0 4px 10px rgba(255, 75, 43, 0.3);
+        }
+
+        .card-footer {
+            background-color: #1c1c1c;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .form-group label {
+            color: #cccccc;
+        }
+
+        input[type="text"], input[type="email"], select, textarea {
+            background-color: #2a2a2a;
+            color: #f1f1f1;
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        input:focus, textarea:focus {
+            background-color: #333;
+            border-color: #ff416c;
+            box-shadow: 0 0 5px rgba(255, 65, 108, 0.6);
+            color: #fff;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #ff4b2b, #ff416c);
+            transform: scale(1.03);
+        }
+
+        .btn-secondary {
+            background-color: #444;
+            border: none;
+            border-radius: 30px;
+            transition: 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #555;
+            transform: scale(1.03);
+        }
+
+        .card-body {
+            padding: 40px;
+        }
+
+        .ripple-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            width: 100px;
+            height: 100px;
+            top: var(--ripple-y);
+            left: var(--ripple-x);
+            transform: translate(-50%, -50%);
+            animation: ripple 0.6s linear;
+        }
+
+        @keyframes ripple {
+            from {
+                transform: scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+    </style>
+
+
+
+
+    <br><br><br><br>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card animate__animated animate__fadeInUp shadow-lg">
+                    <div class="card-header text-center py-4">
+                        <h3 class="mb-0">ایجاد گروه چت جدید</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group mb-4">
+                                <label for="id_name" class="h6">نام گروه چت</label>
+                                {{ form.name }}
+                            </div>
+                            <button type="submit" class="btn btn-primary ripple-btn w-100 py-2">
+                                ایجاد گروه چت
+                                <span class="ripple-effect"></span>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center py-3">
+                        <a href="{% url 'chat' %}" class="btn btn-secondary px-4 py-2">رفتن به بخش پیام‌رسان</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll(".ripple-btn");
+            buttons.forEach(btn => {
+                btn.addEventListener("click", function (e) {
+                    const ripple = document.createElement("span");
+                    ripple.className = "ripple-effect";
+                    this.appendChild(ripple);
+                    const rect = this.getBoundingClientRect();
+                    ripple.style.setProperty("--ripple-x", `${e.clientX - rect.left}px`);
+                    ripple.style.setProperty("--ripple-y", `${e.clientY - rect.top}px`);
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+        });
+    </script>
+
+    {% include "footer.html" %}

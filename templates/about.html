@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سامانه مدیریت مدرسه</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+    <style>
+        /* طراحی دارک و هماهنگ با صفحه اصلی */
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #121212, #1c1c1c);
+            color: #f1f1f1;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            background-color: #333;
+            color: #f1f1f1;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .card-header {
+            background-color: #e6a400;
+            color: #fff;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .card-body {
+            background-color: #444;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        .card-header h3 {
+            font-size: 1.5rem;
+        }
+        .lead {
+            font-size: 1.2rem;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            background-color: #121212;
+            color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <br><br><br><br>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg border-0 rounded-3">
+                    <div class="card-header bg-primary text-white text-center py-4 rounded-top">
+                        <h3>{{ about.title }}</h3>
+                    </div>
+                    <div class="card-body p-5">
+                        <p class="lead">{{ about.content }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    {% include 'footer.html' %}
+
+    <script src="{% static 'scripts/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'scripts/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        const chatToggle = document.getElementById('chatToggle');
+        const chatBox = document.getElementById('chatBox');
+
+        chatToggle.addEventListener('click', () => {
+            chatBox.classList.toggle('d-none');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

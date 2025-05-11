@@ -1,0 +1,148 @@
+{% load static %}
+    {% include "header.html" %}
+
+    <br><br><br>
+
+    <!-- هدر تعاملی -->
+    <header class="hero-header position-relative text-center text-white d-flex align-items-center justify-content-center section"
+      style="min-height: 90vh;
+             background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.85)),
+                         url('https://images.unsplash.com/photo-1606312619349-3de42b1ef09f?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+             backdrop-filter: brightness(0.6);">
+
+      <div class="container">
+        <h1 class="display-4 fw-bold animate__animated animate__fadeInDown text-white text-glow">سامانه هوشمند مدیریت مدرسه</h1>
+        <p class="lead mt-3 animate__animated animate__fadeInUp animate__delay-1s text-light opacity-75">ابزاری قدرتمند برای مدیریت دانش‌آموزان، معلمان، کلاس‌ها و ارتباط با والدین</p>
+
+        <a href="#features" class="text-decoration-none btn-neon-glow ripple-btn d-inline-flex align-items-center justify-content-center px-5 py-3 mt-4 fs-5 fw-bold text-white position-relative">
+          <span class="ripple-effect"></span>
+          شروع استفاده
+        </a>
+
+        <!-- آیکون‌های امکانات -->
+        <div class="row justify-content-center mt-5 animate__animated animate__fadeInUp animate__delay-3s text-white">
+          <div class="col-6 col-sm-3 col-md-2 mb-3">
+            <i class="bi bi-people fs-1 text-info"></i>
+            <p class="small mt-2">کاربران</p>
+          </div>
+          <div class="col-6 col-sm-3 col-md-2 mb-3">
+            <i class="bi bi-journal-text fs-1 text-success"></i>
+            <p class="small mt-2">دروس</p>
+          </div>
+          <div class="col-6 col-sm-3 col-md-2 mb-3">
+            <i class="bi bi-graph-up fs-1 text-warning"></i>
+            <p class="small mt-2">کارنامه</p>
+          </div>
+          <div class="col-6 col-sm-3 col-md-2 mb-3">
+            <i class="bi bi-wallet2 fs-1 text-danger"></i>
+            <p class="small mt-2">مالی</p>
+          </div>
+        </div>
+
+        <!-- اسکرول به پایین -->
+        <div class="scroll-down mt-5 animate__animated animate__fadeIn animate__delay-4s">
+          <a href="#features" class="text-white fs-3"><i class="bi bi-chevron-double-down"></i></a>
+        </div>
+      </div>
+    </header>
+
+    <!-- بخش امکانات تعاملی -->
+    <section class="section py-5" id="features" style="background-color: #000;">
+      <div class="container text-white">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold display-5 animate__animated animate__fadeInDown text-info">بخش‌های سامانه</h2>
+          <p class="fs-5 mt-2 text-light">سامانه‌ای جامع برای مدیریت هوشمند آموزش با قابلیت‌های پیشرفته</p>
+        </div>
+
+        <div class="row g-4 text-center">
+          <!-- کارت ویژگی -->
+          <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: .1s;">
+            <div class="card h-100 border-0 rounded-4" style="background-color: rgba(30,30,30,0.95); color: white;">
+              <div class="icon-circle mb-3 mx-auto bg-opacity-25 text-info">
+                <i class="bi bi-people fs-1"></i>
+              </div>
+              <h5 class="fw-bold mb-2">مدیریت کاربران</h5>
+              <p class="text-light">کنترل کامل نقش‌ها و دسترسی‌ها برای مدیر، معلم، دانش‌آموز و اولیا</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: .2s;">
+            <div class="card h-100 border-0 rounded-4" style="background-color: rgba(30,30,30,0.95); color: white;">
+              <div class="icon-circle mb-3 mx-auto bg-opacity-25 text-success">
+                <i class="bi bi-journal-text fs-1"></i>
+              </div>
+              <h5 class="fw-bold mb-2">مدیریت دروس و کلاس‌ها</h5>
+              <p class="text-light">ایجاد کلاس، پایه تحصیلی، و تخصیص دروس به معلم و دانش‌آموز</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: .3s;">
+            <div class="card h-100 border-0 rounded-4" style="background-color: rgba(30,30,30,0.95); color: white;">
+              <div class="icon-circle mb-3 mx-auto bg-opacity-25 text-warning">
+                <i class="bi bi-file-earmark-bar-graph fs-1"></i>
+              </div>
+              <h5 class="fw-bold mb-2">کارنامه و نمرات</h5>
+              <p class="text-light">ثبت و مشاهده نمرات و گزارش پیشرفت برای دانش‌آموز و اولیا</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: .4s;">
+            <div class="card h-100 border-0 rounded-4" style="background-color: rgba(30,30,30,0.95); color: white;">
+              <div class="icon-circle mb-3 mx-auto bg-opacity-25 text-danger">
+                <i class="bi bi-calendar-check fs-1"></i>
+              </div>
+              <h5 class="fw-bold mb-2">حضور و غیاب</h5>
+              <p class="text-light">ثبت خودکار حضور، هشدار غیبت، و گزارش‌گیری دقیق</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: .5s;">
+            <div class="card h-100 border-0 rounded-4" style="background-color: rgba(30,30,30,0.95); color: white;">
+              <div class="icon-circle mb-3 mx-auto bg-opacity-25 text-info">
+                <i class="bi bi-pencil-square fs-1"></i>
+              </div>
+              <h5 class="fw-bold mb-2">تکالیف و فایل‌ها</h5>
+              <p class="text-light">ارسال و دریافت تکالیف، فایل‌های آموزشی و بازخورد توسط معلم</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: .6s;">
+            <div class="card h-100 border-0 rounded-4" style="background-color: rgba(30,30,30,0.95); color: white;">
+              <div class="icon-circle mb-3 mx-auto bg-opacity-25 text-light">
+                <i class="bi bi-wallet2 fs-1"></i>
+              </div>
+              <h5 class="fw-bold mb-2">امور مالی</h5>
+              <p class="text-light">مدیریت شهریه، صدور قبض، ثبت پرداخت‌ها و پیگیری وضعیت مالی</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- دکمه چت آنلاین -->
+    <button id="chatToggle" class="btn btn-primary rounded-circle position-fixed bottom-0 start-0 m-4 shadow-lg" style="z-index: 1051; width: 60px; height: 60px;">
+        <i class="bi bi-chat-text fs-4 text-white"></i>
+    </button>
+
+    <!-- جعبه چت آنلاین -->
+    <div id="chatBox" class="chat-box shadow-lg rounded-4 position-fixed bottom-0 end-0 me-4 d-none" style="width: 320px; z-index: 1050;margin-bottom: 100px;">
+        <div class="bg-primary text-white rounded-top-4 px-4 py-3">
+        <h6 class="fw-bold mb-1 text-center fs-4">چت آنلاین</h6>
+        <p class="mb-0 small text-center pt-2">لطفاً در صورتی که مشکل فنی یا سوالی دارید، در بخش زیر پیام خود را ارسال کنید.</p>
+        <div class="d-flex justify-content-center mt-3">
+            <img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle border border-light me-2" width="40" height="40" alt="1">
+            <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle border border-light me-2" width="40" height="40" alt="2">
+            <img src="https://randomuser.me/api/portraits/women/13.jpg" class="rounded-circle border border-light" width="40" height="40" alt="3">
+        </div>
+        </div>
+        <div class="bg-light py-3 px-3" style="min-height: 160px; background-image: url('https://www.transparenttextures.com/patterns/symphony.png'); background-size: contain;">
+        <p class="text-muted text-center small mt-5">هیچ پیامی هنوز ارسال نشده است.</p>
+        </div>
+        <div class="border-top d-flex align-items-center px-3 py-2 bg-white rounded-bottom-4">
+        <input type="text" class="form-control border-0 shadow-none" placeholder="یک پیام بنویسید..." />
+        <button class="btn btn-link text-primary fs-4"><i class="bi bi-send"></i></button>
+        </div>
+    </div>
+
+    {% include "footer.html" %}
+

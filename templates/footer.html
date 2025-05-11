@@ -1,0 +1,59 @@
+{% load static %}
+
+<!-- فوتر -->
+<footer class="footer text-center text-md-start text-white pt-5 pb-3 mt-5" style="background-color: #1f1f1f;">
+<div class="container">
+  <div class="row">
+    <!-- درباره ما -->
+    <div class="col-md-4 mb-4">
+      <h5 class="fw-bold mb-3">درباره ما</h5>
+      <p style="font-size: 14px;">
+        سامانه مدیریت مدرسه برای یکپارچه‌سازی فرآیندهای آموزشی، مدیریتی و ارتباطی در مدارس طراحی شده است. ما با ارائه فناوری‌های روز، مدرسه‌ای هوشمند و پویا می‌سازیم.
+      </p>
+    </div>
+
+    <!-- دسترسی سریع -->
+    <div class="col-md-4 mb-4">
+      <h5 class="fw-bold mb-3">دسترسی سریع</h5>
+      <ul class="list-unstyled">
+        <li><a href="#features" class="text-white text-decoration-none">بخش‌ها</a></li>
+        <li><a href="#about" class="text-white text-decoration-none">درباره ما</a></li>
+        <li><a href="#contact" class="text-white text-decoration-none">تماس با ما</a></li>
+      </ul>
+    </div>
+
+    <!-- تماس با ما -->
+    <div class="col-md-4 mb-4">
+      <h5 class="fw-bold mb-3">تماس با ما</h5>
+      <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i>استان قم، خیابان آموزش، کوچه مدرسه</p>
+      <p class="mb-1"><i class="bi bi-telephone-fill me-2"></i>021-12345678</p>
+      <p class="mb-1"><i class="bi bi-envelope-fill me-2"></i>info@myschool.com</p>
+      <!-- شبکه‌های اجتماعی -->
+      <div class="mt-3">
+        <a href="#" class="text-white me-3 fs-5"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-white me-3 fs-5"><i class="bi bi-telegram"></i></a>
+        <a href="#" class="text-white me-3 fs-5"><i class="bi bi-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="border-secondary">
+
+  <div class="text-center">
+    <p class="mb-0" style="font-size: 14px;">تمامی حقوق محفوظ است &copy; 2025 - مدرسه من</p>
+  </div>
+</div>
+</footer>
+    <!-- جاوا اسکریپت‌ها -->
+    <script src="{% static 'scripts/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'scripts/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        const chatToggle = document.getElementById("chatToggle");
+        const chatBox = document.getElementById("chatBox");
+
+        chatToggle.addEventListener("click", () => {
+          chatBox.classList.toggle("d-none");
+        });
+    </script>
+</body>
+</html>
