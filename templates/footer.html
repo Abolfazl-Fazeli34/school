@@ -45,38 +45,48 @@
 </div>
 </footer>
     <!-- جاوا اسکریپت‌ها -->
-    <script src="{% static 'scripts/jquery-3.3.1.slim.min.js' %}"></script>
-    <script src="{% static 'scripts/bootstrap.bundle.min.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-    {% if messages %}
-        {% for message in messages %}
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-                "positionClass": "toast-top-left",
-                "timeOut": "5000",
-            };
-            {% if message.tags == 'error' %}
-                toastr.error("{{ message|escapejs }}");
-            {% elif message.tags == 'success' %}
-                toastr.success("{{ message|escapejs }}");
-            {% elif message.tags == 'warning' %}
-                toastr.warning("{{ message|escapejs }}");
-            {% else %}
-                toastr.info("{{ message|escapejs }}");
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-    </script>
+<script src="{% static 'scripts/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'scripts/bootstrap.bundle.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script>
-        const chatToggle = document.getElementById("chatToggle");
-        const chatBox = document.getElementById("chatBox");
+<script>
+  {% if messages %}
+    {% for message in messages %}
+      toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-left",
+        "timeOut": "5000",
+      };
+      {% if message.tags == 'error' %}
+        toastr.error("{{ message|escapejs }}");
+      {% elif message.tags == 'success' %}
+        toastr.success("{{ message|escapejs }}");
+      {% elif message.tags == 'warning' %}
+        toastr.warning("{{ message|escapejs }}");
+      {% else %}
+        toastr.info("{{ message|escapejs }}");
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</script>
 
-        chatToggle.addEventListener("click", () => {
-          chatBox.classList.toggle("d-none");
-        });
-    </script>
+<script>
+  const chatToggle = document.getElementById("chatToggle");
+  const chatBox = document.getElementById("chatBox");
+
+  if (chatToggle && chatBox) {
+    chatToggle.addEventListener("click", () => {
+      chatBox.classList.toggle("d-none");
+    });
+  }
+</script>
+<script>
+  function toggleSearchBox() {
+    const box = document.getElementById("searchToggleBox");
+    box.classList.toggle("active");
+  }
+</script>
+
 </body>
 </html>

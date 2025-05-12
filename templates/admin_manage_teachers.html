@@ -92,7 +92,7 @@
         {% endfor %}
     {% endif %}
 
-    <table class="table table-bordered table-hover" dir="rtl">
+    <table class="table table-dark table-bordered table-hover" dir="rtl">
         <thead>
             <tr>
                 <th class="text-white">نام کامل</th>
@@ -117,34 +117,57 @@
             </tr>
 
             <!-- مودال ویرایش معلم -->
-            <div class="modal fade" id="editModal{{ teacher.id }}" tabindex="-1">
+            <!-- مودال ویرایش معلم -->
+            <div class="modal fade" id="editModal{{ teacher.id }}" tabindex="-1" aria-labelledby="editModalLabel{{ teacher.id }}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">ویرایش معلم: {{ teacher.first_name }} {{ teacher.last_name }}</h5>
-                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                            <h5 class="modal-title" id="editModalLabel{{ teacher.id }}">ویرایش معلم: {{ teacher.first_name }} {{ teacher.last_name }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <div class="modal-body">
                             <form method="post">
                                 {% csrf_token %}
-                                {{ edit_form.as_p }}
+
                                 <div class="form-group">
-                                    <label>نقش</label>
-                                    <select name="role" class="form-control">
+                                    <label for="first_name_{{ teacher.id }}">نام</label>
+                                    <input type="text" class="form-control" id="first_name_{{ teacher.id }}" name="first_name" value="{{ teacher.first_name }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="last_name_{{ teacher.id }}">نام خانوادگی</label>
+                                    <input type="text" class="form-control" id="last_name_{{ teacher.id }}" name="last_name" value="{{ teacher.last_name }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email_{{ teacher.id }}">ایمیل</label>
+                                    <input type="email" class="form-control" id="email_{{ teacher.id }}" name="email" value="{{ teacher.email }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="role_{{ teacher.id }}">نقش</label>
+                                    <select name="role" class="form-control" id="role_{{ teacher.id }}" required>
                                         <option value="teacher" {% if teacher.role == 'teacher' %}selected{% endif %}>معلم</option>
                                         <option value="admin" {% if teacher.role == 'admin' %}selected{% endif %}>مدیر</option>
                                         <option value="assistant" {% if teacher.role == 'assistant' %}selected{% endif %}>معاون</option>
                                     </select>
                                 </div>
+
                                 <input type="hidden" name="action" value="edit">
                                 <input type="hidden" name="teacher_id" value="{{ teacher.id }}">
-                                <button type="submit" class="btn btn-success">ذخیره</button>
+
+                                <button type="submit" class="btn btn-success">ذخیره تغییرات</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
 
             <!-- مودال حذف معلم -->
             <div class="modal fade" id="deleteModal{{ teacher.id }}" tabindex="-1">

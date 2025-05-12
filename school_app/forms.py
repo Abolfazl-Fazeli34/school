@@ -275,15 +275,13 @@ class ChatGroupForm(forms.ModelForm):
 # school/forms.py
 
 
-from django import forms
-from .models import CustomUser
-
 class CustomUserFormRole(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ['full_name', 'email', 'phone', 'grade', 'educational_base', 'role']  # اضافه کردن فیلد role
 
-    role = forms.ChoiceField(choices=CustomUser.role, required=False)  # انتخاب نقش برای کاربر
+    role = forms.ChoiceField(choices=CustomUser.ROLE_CHOICES, required=False)
+
 
 
 class CustomUserFormRole2(forms.ModelForm):

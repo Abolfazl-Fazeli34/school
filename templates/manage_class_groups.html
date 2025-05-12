@@ -1,7 +1,6 @@
-
 {% include 'header.html' %}
 
-    <style>
+<style>
     body {
         font-family: 'Vazirmatn', sans-serif;
         background: #121212;
@@ -21,7 +20,7 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
     .card-header {
-        background: linear-gradient(45deg, #ff4d4d, #ff0000); /* تغییر به رنگ قرمز */
+        background: linear-gradient(45deg, #ff4d4d, #ff0000);
         color: #fff;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
@@ -42,11 +41,11 @@
     .card-body input:focus,
     .card-body select:focus,
     .card-body textarea:focus {
-        border-color: #ff4d4d; /* رنگ قرمز برای حالت فوکوس */
+        border-color: #ff4d4d;
         outline: none;
     }
     .btn-custom {
-        background-color: #ff4d4d; /* قرمز برای دکمه */
+        background-color: #ff4d4d;
         color: #fff;
         border: none;
         border-radius: 50px;
@@ -56,7 +55,7 @@
         transition: all 0.3s ease;
     }
     .btn-custom:hover {
-        background-color: #ff0000; /* قرمز تیره برای هاور */
+        background-color: #ff0000;
         transform: translateY(-2px);
     }
     .list-group-item {
@@ -68,7 +67,7 @@
         transition: all 0.3s ease;
     }
     .list-group-item:hover {
-        background-color: #ff4d4d; /* قرمز برای هاور */
+        background-color: #ff4d4d;
         cursor: pointer;
     }
     .footer {
@@ -145,20 +144,4 @@
   </div>
 </div>
 
-
-
-
-<script>
-    // تنظیم زمان شروع به زمان حال در فرمت datetime-local
-    document.addEventListener("DOMContentLoaded", function () {
-        const startTimeInput = document.getElementById("id_start_time");
-        if (startTimeInput) {
-            const now = new Date();
-            const isoString = now.toISOString(); // تبدیل به فرمت ISO
-            const localString = isoString.slice(0, 16); // تغییر فرمت به 'YYYY-MM-DDTHH:MM'
-            startTimeInput.value = localString; // تنظیم مقدار فیلد
-        }
-    });
-</script>
 {% include 'footer.html' %}
-

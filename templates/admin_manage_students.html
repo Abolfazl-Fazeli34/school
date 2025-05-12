@@ -106,7 +106,7 @@
         {% endfor %}
     {% endif %}
 
-    <table class="table table-bordered table-hover" dir="rtl">
+    <table class="table table-dark table-bordered table-hover" dir="rtl">
         <thead>
             <tr>
                 <th class="text-white">نام کامل</th>
@@ -138,11 +138,12 @@
             </tr>
 
             <!-- مودال ویرایش دانش‌آموز -->
+            <!-- مودال ویرایش دانش‌آموز -->
             <div class="modal fade" id="editModal{{ student.id }}" tabindex="-1" aria-labelledby="editModalLabel{{ student.id }}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editModalLabel{{ student.id }}">ویرایش دانش‌آموز: {{ student.first_name }} {{ student.last_name }}</h5>
+                            <h5 class="modal-title" id="editModalLabel{{ student.id }}">ویرایش دانش‌آموز: {{ student.full_name }}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -150,19 +151,49 @@
                         <div class="modal-body">
                             <form method="post">
                                 {% csrf_token %}
-                                {{ edit_form.as_p }}
-                                <div class="form-group">
-                                    <label for="role">نقش</label>
-                                    <select name="role" class="form-control">
-                                        <option value="student" {% if student.role == 'student' %}selected{% endif %}>دانش‌آموز</option>
-                                        <option value="teacher" {% if student.role == 'teacher' %}selected{% endif %}>معلم</option>
-                                        <option value="admin" {% if student.role == 'admin' %}selected{% endif %}>مدیر</option>
-                                        <option value="admin" {% if student.role == 'assistant' %}selected{% endif %}>معاون</option>
 
+                                <div class="form-group">
+                                    <label for="full_name_{{ student.id }}">نام کامل</label>
+                                    <input type="text" class="form-control" id="full_name_{{ student.id }}" name="full_name" value="{{ student.full_name }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email_{{ student.id }}">ایمیل</label>
+                                    <input type="email" class="form-control" id="email_{{ student.id }}" name="email" value="{{ student.email }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone_{{ student.id }}">شماره تماس</label>
+                                    <input type="text" class="form-control" id="phone_{{ student.id }}" name="phone" value="{{ student.phone }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="grade_{{ student.id }}">پایه</label>
+                                    <input type="text" class="form-control" id="grade_{{ student.id }}" name="grade" value="{{ student.grade }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="educational_base_{{ student.id }}">رشته تحصیلی</label>
+                                    <select class="form-control" id="educational_base_{{ student.id }}" name="educational_base" required>
+                                        <option value="Networks" {% if student.educational_base == 'Networks' %}selected{% endif %}>شبکه</option>
+                                        <option value="Electricity" {% if student.educational_base == 'Electricity' %}selected{% endif %}>برق</option>
+                                        <option value="Electronics" {% if student.educational_base == 'Electronics' %}selected{% endif %}>الکترونیک</option>
                                     </select>
                                 </div>
+
+
+                                <div class="form-group">
+                                    <label for="role_{{ student.id }}">نقش</label>
+                                    <select name="role" class="form-control" id="role_{{ student.id }}">
+                                        {% for value, label in student.ROLE_CHOICES %}
+                                            <option value="{{ value }}" {% if student.role == value %}selected{% endif %}>{{ label }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
                                 <input type="hidden" name="action" value="edit">
                                 <input type="hidden" name="student_id" value="{{ student.id }}">
+
                                 <button type="submit" class="btn btn-success">ذخیره تغییرات</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
                             </form>
@@ -170,6 +201,8 @@
                     </div>
                 </div>
             </div>
+
+
 
 
             <!-- مودال حذف دانش‌آموز -->
