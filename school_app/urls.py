@@ -16,5 +16,8 @@ urlpatterns = [
     path('student/attendance/', views.student_attendance, name='student_attendance'),
     path('create-chat-group/', views.create_chat_group, name='create_chat_group'),
     path('about/', views.about_view, name='about'),
+    path('manage-students/', views.admin_manage_students, name='admin_manage_students'),
+    path('manage-teachers/', views.admin_manage_teachers, name='admin_manage_teachers'),
+    path('manage-groups-and-messages/', views.manage_groups, name='manage_groups'),
 ]
 

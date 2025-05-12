@@ -272,4 +272,22 @@ class ChatGroupForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'نام گروه چت را وارد کنید'})
         }
 
+# school/forms.py
+
+
+from django import forms
+from .models import CustomUser
+
+class CustomUserFormRole(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['full_name', 'email', 'phone', 'grade', 'educational_base', 'role']  # اضافه کردن فیلد role
+
+    role = forms.ChoiceField(choices=CustomUser.role, required=False)  # انتخاب نقش برای کاربر
+
+
+class CustomUserFormRole2(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'email', 'role']  # فیلد نقش اضافه شود
 

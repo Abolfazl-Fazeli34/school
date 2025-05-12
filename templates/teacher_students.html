@@ -1,239 +1,254 @@
- {% include "header.html" %}
-    <style>
-        /* سبک‌های اختصاصی */
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-            color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-            transition: background-color 0.5s ease;
-        }
+{% include "header.html" %}
+<br>
+<br>
+<br>
+<br>
+<style>
+    body {
+        font-family: 'Vazirmatn', sans-serif;
+        background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+        color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+    }
 
-        h1 {
-            font-weight: bold;
-            color: #ff3838;
-            text-shadow: 0 0 15px rgba(255, 56, 56, 0.7);
-            animation: fadeIn 1s ease-out;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    h1 {
+        font-weight: bold;
+        color: #ff3838;
+        text-shadow: 0 0 15px rgba(255, 56, 56, 0.7);
+        animation: fadeIn 1s ease-out;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.2rem;
+    }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
-        .table {
-            background-color: #222;
-            color: #ddd;
-            border-radius: 15px;
-            border: 1px solid #444;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-            animation: tableFadeIn 0.5s ease-out;
-        }
+    .table-container {
+        overflow-x: auto;
+        border-radius: 15px;
+    }
 
-        @keyframes tableFadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
+    .table {
+        width: 100%;
+        min-width: 800px;
+        border-collapse: collapse;
+        background-color: #222;
+        color: #ddd;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        animation: tableFadeIn 0.6s ease-out;
+    }
 
-        .table th, .table td {
-            padding: 15px;
-            text-align: center;
-            border-bottom: 1px solid #444;
-        }
+    @keyframes tableFadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
 
-        .table th {
-            background-color: #333;
-            color: #ff3838;
-        }
+    .table th, .table td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #444;
+    }
 
-        .table tbody tr:hover {
-            background-color: #333;
-            transform: scale(1.05);
-            transition: transform 0.3s ease-in-out, background-color 0.3s;
+    .table th {
+        background-color: #333;
+        color: #ff3838;
+        font-weight: bold;
+    }
+
+    .table tbody tr:hover {
+        background-color: #2a2a2a;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-custom {
+        padding: 6px 10px;
+        font-size: 14px;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+        white-space: nowrap;
+    }
+
+    .btn-custom:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(255, 56, 56, 0.3);
+    }
+
+    .modal-content {
+        background: linear-gradient(145deg, #333, #222);
+        color: #fff;
+        border-radius: 15px;
+        border: 1px solid #444;
+    }
+
+    .form-control {
+        background-color: #333;
+        border: 1px solid #555;
+        color: #eee;
+        border-radius: 8px;
+    }
+
+    .form-control:focus {
+        background-color: #444;
+        border-color: #ff3838;
+        box-shadow: 0 0 8px rgba(255, 56, 56, 0.5);
+        outline: none;
+    }
+
+    .modal-header h5 {
+        color: #ff3838;
+        font-weight: bold;
+    }
+
+    .btn-primary, .btn-warning, .btn-success {
+        background-color: #ff3838;
+        border-color: #ff3838;
+        color: #fff;
+    }
+
+    .btn-primary:hover, .btn-warning:hover, .btn-success:hover {
+        background-color: #d32f2f;
+        border-color: #d32f2f;
+    }
+
+    @media (max-width: 768px) {
+        .d-flex.flex-wrap.gap-2.justify-content-center {
+            flex-direction: column;
         }
 
         .btn-custom {
-            transition: transform 0.2s ease-in-out;
+            width: 100%;
         }
 
-        .btn-custom:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 15px rgba(255, 56, 56, 0.3);
+        h1 {
+            font-size: 1.6rem;
         }
 
-        .modal-content {
-            background: linear-gradient(145deg, #333, #222);
-            color: #fff;
-            border-radius: 15px;
-            border: 1px solid #444;
+        .table th, .table td {
+            padding: 10px;
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 1.3rem;
         }
 
-        .form-control {
-            background-color: #333;
-            border: 1px solid #444;
-            color: #eee;
-            transition: background-color 0.3s ease;
+        .table th, .table td {
+            font-size: 12px;
+            padding: 8px;
         }
-
-        .form-control:focus {
-            background-color: #444;
-            border-color: #ff3838;
-        }
-
-        .modal-header h5 {
-            font-weight: bold;
-            color: #ff3838;
-        }
-
-        .btn-primary, .btn-warning, .btn-success {
-            background-color: #ff3838;
-            border-color: #ff3838;
-            color: #fff;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .btn-primary:hover, .btn-warning:hover, .btn-success:hover {
-            background-color: #d32f2f;
-            border-color: #d32f2f;
-            transform: scale(1.1);
-        }
-
-        @media (max-width: 768px) {
-            .table {
-                font-size: 14px;
-            }
-
-            .modal-dialog {
-                max-width: 90%;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            h1 {
-                font-size: 20px;
-            }
-
-            .table th, .table td {
-                font-size: 12px;
-                padding: 10px;
-            }
-
-            .btn-custom {
-                width: 100%;
-            }
-        }
-    </style>
-
+    }
+</style>
 
 <div class="container py-5">
-    <br>
-    <br>
-    <br>
     <h1>دانش‌آموزان معلم {{ teacher.full_name }}</h1>
 
     {% if students %}
+    <div class="table-container">
         <table class="table table-bordered table-dark">
-    <thead>
-        <tr>
-            <th>نام و نام خانوادگی</th>
-            <th>پایه تحصیلی</th>
-            <th>رشته آموزشی</th>
-            <th>ایمیل</th>
-            <th>تلفن</th>
-            <th>عملیات</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for student in students %}
-            <tr>
-                <td>{{ student.full_name }}</td>
-                <td>{{ student.grade }}</td>
-                <td>{{ student.educational_base }}</td>
-                <td>{{ student.email }}</td>
-                <td>{{ student.phone }}</td>
-                <td>
-                    <button type="button" class="btn btn-warning btn-custom" data-bs-toggle="modal" data-bs-target="#sendReportModal{{ student.id }}">ارسال کارنامه</button>
-                    <button type="button" class="btn btn-success btn-custom" data-bs-toggle="modal" data-bs-target="#sendGradesModal{{ student.id }}">ارسال نمرات</button>
-                    <button type="button" class="btn btn-primary btn-custom" data-bs-toggle="modal" data-bs-target="#sendMessageModal{{ student.id }}">ارسال پیام</button>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>نام و نام خانوادگی</th>
+                    <th>پایه تحصیلی</th>
+                    <th>رشته آموزشی</th>
+                    <th>ایمیل</th>
+                    <th>تلفن</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.full_name }}</td>
+                    <td>{{ student.grade }}</td>
+                    <td>{{ student.educational_base }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.phone }}</td>
+                    <td>
+                        <div class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-warning btn-custom" data-bs-toggle="modal" data-bs-target="#sendReportModal{{ student.id }}">کارنامه</button>
+                            <button class="btn btn-success btn-custom" data-bs-toggle="modal" data-bs-target="#sendGradesModal{{ student.id }}">نمره</button>
+                            <button class="btn btn-primary btn-custom" data-bs-toggle="modal" data-bs-target="#sendMessageModal{{ student.id }}">پیام</button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-            <!-- مودال‌ها -->
-            <!-- مودال ارسال کارنامه -->
-            <div class="modal fade" id="sendReportModal{{ student.id }}" tabindex="-1" aria-labelledby="sendReportModalLabel{{ student.id }}" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content bg-dark text-light">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="sendReportModalLabel{{ student.id }}">ارسال کارنامه به {{ student.full_name }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="student_id" value="{{ student.id }}">
-                                {{ report_form.as_p }}
-                                <button type="submit" name="send_report" class="btn btn-warning w-100">ارسال کارنامه</button>
-                            </form>
-                        </div>
-                    </div>
+    <!-- Modals -->
+    {% for student in students %}
+    <!-- Modal: ارسال کارنامه -->
+    <div class="modal fade" id="sendReportModal{{ student.id }}" tabindex="-1" aria-labelledby="sendReportModalLabel{{ student.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ارسال کارنامه به {{ student.full_name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="student_id" value="{{ student.id }}">
+                        {{ report_form.as_p }}
+                        <button type="submit" name="send_report" class="btn btn-warning w-100">ارسال</button>
+                    </form>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- مودال ارسال نمرات -->
-            <div class="modal fade" id="sendGradesModal{{ student.id }}" tabindex="-1" aria-labelledby="sendGradesModalLabel{{ student.id }}" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content bg-dark text-light">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="sendGradesModalLabel{{ student.id }}">ارسال نمرات به {{ student.full_name }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="student_id" value="{{ student.id }}">
-                                {{ grade_form.as_p }}
-                                <button type="submit" name="send_grades" class="btn btn-success w-100">ارسال نمرات</button>
-                            </form>
-                        </div>
-                    </div>
+    <!-- Modal: ارسال نمره -->
+    <div class="modal fade" id="sendGradesModal{{ student.id }}" tabindex="-1" aria-labelledby="sendGradesModalLabel{{ student.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ارسال نمرات به {{ student.full_name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="student_id" value="{{ student.id }}">
+                        {{ grade_form.as_p }}
+                        <button type="submit" name="send_grades" class="btn btn-success w-100">ارسال</button>
+                    </form>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- مودال ارسال پیام -->
-            <div class="modal fade" id="sendMessageModal{{ student.id }}" tabindex="-1" aria-labelledby="sendMessageModalLabel{{ student.id }}" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content bg-dark text-light">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="sendMessageModalLabel{{ student.id }}">ارسال پیام به {{ student.full_name }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="student_id" value="{{ student.id }}">
-                                {{ message_form.as_p }}
-                                <button type="submit" name="send_message" class="btn btn-primary w-100">ارسال پیام</button>
-                            </form>
-                        </div>
-                    </div>
+    <!-- Modal: ارسال پیام -->
+    <div class="modal fade" id="sendMessageModal{{ student.id }}" tabindex="-1" aria-labelledby="sendMessageModalLabel{{ student.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ارسال پیام به {{ student.full_name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="student_id" value="{{ student.id }}">
+                        {{ message_form.as_p }}
+                        <button type="submit" name="send_message" class="btn btn-primary w-100">ارسال</button>
+                    </form>
                 </div>
             </div>
-
-        {% endfor %}
-    </tbody>
-</table>
+        </div>
+    </div>
+    {% endfor %}
 
     {% else %}
-        <p class="text-light">هیچ دانش‌آموزی در این پایه تحصیلی و رشته آموزشی وجود ندارد.</p>
+    <p class="text-light text-center">هیچ دانش‌آموزی در این پایه تحصیلی و رشته آموزشی وجود ندارد.</p>
     {% endif %}
 </div>
 
-{% include 'footer.html' %}
+{% include "footer.html" %}

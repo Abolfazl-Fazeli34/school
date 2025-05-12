@@ -120,29 +120,64 @@
     </section>
 
     <!-- دکمه چت آنلاین -->
-    <button id="chatToggle" class="btn btn-primary rounded-circle position-fixed bottom-0 start-0 m-4 shadow-lg" style="z-index: 1051; width: 60px; height: 60px;">
+    <button id="chatToggle" class="btn bg-danger rounded-circle position-fixed bottom-0 start-0 m-4 shadow-lg" style="z-index: 1051; width: 60px; height: 60px;">
         <i class="bi bi-chat-text fs-4 text-white"></i>
     </button>
 
     <!-- جعبه چت آنلاین -->
-    <div id="chatBox" class="chat-box shadow-lg rounded-4 position-fixed bottom-0 end-0 me-4 d-none" style="width: 320px; z-index: 1050;margin-bottom: 100px;">
-        <div class="bg-primary text-white rounded-top-4 px-4 py-3">
-        <h6 class="fw-bold mb-1 text-center fs-4">چت آنلاین</h6>
-        <p class="mb-0 small text-center pt-2">لطفاً در صورتی که مشکل فنی یا سوالی دارید، در بخش زیر پیام خود را ارسال کنید.</p>
-        <div class="d-flex justify-content-center mt-3">
-            <img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle border border-light me-2" width="40" height="40" alt="1">
-            <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle border border-light me-2" width="40" height="40" alt="2">
-            <img src="https://randomuser.me/api/portraits/women/13.jpg" class="rounded-circle border border-light" width="40" height="40" alt="3">
+    <div id="chatBox" class="chat-box shadow-lg rounded-4 position-fixed bottom-0 end-0 me-4 d-none" style="width: 320px; max-width: 95vw; z-index: 1050; margin-bottom: 100px;">
+        <!-- هدر چت -->
+        <div class="bg-danger text-white rounded-top-4 px-4 py-3">
+            <h6 class="fw-bold mb-1 text-center fs-4">💬 چت آنلاین</h6>
+            <p class="mb-0 small text-center pt-2">در صورت نیاز به پشتیبانی یا پرسش، لطفاً از راه‌های دیگر ارتباطی استفاده کنید.</p>
+            <div class="d-flex justify-content-center mt-3">
+                <img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle border border-light me-2" width="40" height="40" alt="1">
+                <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle border border-light me-2" width="40" height="40" alt="2">
+                <img src="https://randomuser.me/api/portraits/women/13.jpg" class="rounded-circle border border-light" width="40" height="40" alt="3">
+            </div>
         </div>
+
+        <!-- بدنه پیام‌ها (ثابت) -->
+        <div class="bg-dark text-light py-3 px-3" style="min-height: 180px; max-height: 240px; overflow-y: auto; background-image: url('https://www.transparenttextures.com/patterns/diagmonds.png'); background-size: contain;">
+            <!-- پیام دریافتی -->
+            <div class="d-flex align-items-start mb-3">
+                <img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle me-2" width="32" height="32" alt="user">
+                <div class="bg-secondary text-white p-2 rounded-3">
+                    <small>سلام، در چه موردی نیاز به راهنمایی دارید؟</small>
+                </div>
+            </div>
+            <!-- پیام کاربر -->
+            <div class="d-flex justify-content-end mb-3">
+                <div class="bg-danger text-white p-2 rounded-3 text-end">
+                    <small>سلام، در مورد ارسال تکالیف سوال داشتم.</small>
+                </div>
+            </div>
+            <!-- پیام بعدی پشتیبانی -->
+            <div class="d-flex align-items-start mb-3">
+                <img src="https://randomuser.me/api/portraits/men/12.jpg" class="rounded-circle me-2" width="32" height="32" alt="support">
+                <div class="bg-secondary text-white p-2 rounded-3">
+                    <small>می‌توانید از بخش «ارسال تکالیف» در داشبورد اقدام کنید.</small>
+                </div>
+            </div>
         </div>
-        <div class="bg-light py-3 px-3" style="min-height: 160px; background-image: url('https://www.transparenttextures.com/patterns/symphony.png'); background-size: contain;">
-        <p class="text-muted text-center small mt-5">هیچ پیامی هنوز ارسال نشده است.</p>
-        </div>
-        <div class="border-top d-flex align-items-center px-3 py-2 bg-white rounded-bottom-4">
-        <input type="text" class="form-control border-0 shadow-none" placeholder="یک پیام بنویسید..." />
-        <button class="btn btn-link text-primary fs-4"><i class="bi bi-send"></i></button>
-        </div>
+        <!-- فرم ارسال پیام -->
+        <form class="border-top d-flex align-items-center px-3 py-2 bg-black rounded-bottom-4">
+            <input type="text" class="form-control border-0 shadow-none bg-dark text-white" placeholder="پیام بنویسید..." required />
+            <button type="submit" class="btn btn-link text-danger fs-4 px-2"><i class="bi bi-send-fill"></i></button>
+        </form>
     </div>
+
+    <!-- اسکریپت فعال‌سازی دکمه -->
+    <script>
+        const chatToggle = document.getElementById('chatToggle');
+        const chatBox = document.getElementById('chatBox');
+
+        chatToggle.addEventListener('click', () => {
+            chatBox.classList.toggle('d-none');
+        });
+    </script>
+
+
 
     {% include "footer.html" %}
 

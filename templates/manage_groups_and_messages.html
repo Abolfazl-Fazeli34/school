@@ -1,0 +1,68 @@
+{% include 'header.html' %}
+<style>
+    body{
+        background-color: #121212;
+    }
+</style>
+<br><br><br><br>
+<div class="container mt-5 text-white" dir="rtl">
+    <h3 class="mb-4">مدیریت گروه‌های درسی و پیام‌ها</h3>
+    <a href="{% url 'home' %}" class="btn btn-secondary mb-3">بازگشت</a>
+
+    {% if groups %}
+        <div class="row">
+            {% for group in groups %}
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-dark text-white">
+                        <div class="card-header d-flex justify-content-between">
+                            <h5 class="mb-0">{{ group.name }}</h5>
+                            <button class="btn btn-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ group.id }}" aria-expanded="false" aria-controls="collapse{{ group.id }}">
+                                نمایش پیام‌ها
+                            </button>
+                        </div>
+                        <div id="collapse{{ group.id }}" class="collapse" aria-labelledby="heading{{ group.id }}">
+                            <div class="card-body bg-dark">
+                                <h6>توضیحات گروه:</h6>
+                                <p>{{ group.description }}</p>
+
+                                <h5>پیام‌های گروه</h5>
+                                {% if group.messages_list %}
+                                    <ul class="list-group">
+                                        {% for msg in group.messages_list %}
+                                            <li class="list-group-item bg-secondary text-white mb-2">
+                                                  گفت:<strong>{{ msg.text }}</strong>
+                                                <div class="mt-2">{{ msg.content }}</div>
+                                                <small class="text-light">در تاریخ: {{ msg.timestamp|date:"Y/m/d H:i" }}</small>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p class="text-warning">هنوز پیامی برای این گروه ثبت نشده است.</p>
+                                {% endif %}
+
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="group_id" value="{{ group.id }}">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">ویرایش نام گروه</label>
+                                        <input type="text" class="form-control" id="name" name="name" value="{{ group.name }}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">ویرایش توضیحات گروه</label>
+                                        <input type="text" class="form-control" id="description" name="description" value="{{ group.description }}">
+                                    </div>
+                                    <button type="submit" name="action" value="edit" class="btn btn-primary">ویرایش گروه</button>
+                                    <button type="submit" name="action" value="delete" class="btn btn-danger">حذف گروه</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-warning">هیچ گروهی برای نمایش وجود ندارد.</p>
+    {% endif %}
+</div>
+
+{% include 'footer.html' %}

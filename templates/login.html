@@ -20,7 +20,7 @@
             max-width: 500px;
             margin: 5vh auto;
             padding: 30px;
-            background-color: #1e1e1e;
+            background-color: #1a1a1a;
             border-radius: 20px;
             box-shadow: 0 0 15px rgba(0,0,0,0.7);
         }
@@ -30,24 +30,30 @@
             color: #fff;
         }
         .form-control:focus {
-            border-color: #00bcd4;
-            box-shadow: 0 0 0 0.2rem rgba(0,188,212,.25);
+            border-color: #e53935;
+            box-shadow: 0 0 0 0.2rem rgba(229,57,53,.25);
         }
-        .btn-dark-blue {
-            background-color: #00bcd4;
+        .btn-dark-red {
+            background-color: #e53935;
             color: #fff;
             border: none;
             transition: 0.3s;
         }
-        .btn-dark-blue:hover {
-            background-color: #0097a7;
+        .btn-dark-red:hover {
+            background-color: #d32f2f;
         }
         .form-title {
             font-size: 1.8rem;
             font-weight: bold;
             text-align: center;
             margin-bottom: 25px;
-            color: #00bcd4;
+            color: #e53935;
+        }
+        .form-check-label {
+            color: #fff;
+        }
+        .text-primary {
+            color: #e53935;
         }
     </style>
 </head>
@@ -72,7 +78,7 @@
                     مرا به خاطر بسپار
                 </label>
             </div>
-            <button type="submit" class="btn btn-dark-blue w-100">
+            <button type="submit" class="btn btn-dark-red w-100">
                 ورود
             </button>
             <a href="{% url 'register' %}" class="text-primary">ثبت نام</a>

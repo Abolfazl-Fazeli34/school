@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils import timezone
 from django.contrib import messages
 from django.urls import reverse
 from pyexpat.errors import messages as expat_messages
 
-from .forms import RegisterForm, LoginForm, ProfileForm, GradeForm, ReportForm, PrivateMessageForm, ClassGroupForm, ChatGroupForm
+from .forms import RegisterForm, LoginForm, ProfileForm, GradeForm, ReportForm, PrivateMessageForm, ClassGroupForm, \
+    ChatGroupForm, CustomUserForm
 from .models import ChatGroup, Message, CustomUser, Grade, Report, PrivateMessage, ClassGroup, Attendance, About
 
 
@@ -56,19 +57,19 @@ def profile_view(request):
     reports = Report.objects.filter(student=user)
     messages = PrivateMessage.objects.filter(receiver=user)
 
-    if user.role == 'teacher':
-        students = CustomUser.objects.filter(educational_base=user.educational_base, grade=user.grade, role='student')
-        student_messages = PrivateMessage.objects.filter(sender=user, receiver__in=students)
-        student_grades = Grade.objects.filter(student__in=students)
-        student_reports = Report.objects.filter(student__in=students)
-
-        return render(request, 'teacher_students.html', {
-            'teacher': user,
-            'students': students,
-            'student_grades': student_grades,
-            'student_reports': student_reports,
-            'student_messages': student_messages,
-        })
+    # if user.role == 'teacher':
+    #     students = CustomUser.objects.filter(educational_base=user.educational_base, grade=user.grade, role='student')
+    #     student_messages = PrivateMessage.objects.filter(sender=user, receiver__in=students)
+    #     student_grades = Grade.objects.filter(student__in=students)
+    #     student_reports = Report.objects.filter(student__in=students)
+    #
+    #     return render(request, 'teacher_students.html', {
+    #         'teacher': user,
+    #         'students': students,
+    #         'student_grades': student_grades,
+    #         'student_reports': student_reports,
+    #         'student_messages': student_messages,
+    #     })
 
     return render(request, 'profile.html', {
         'form': ProfileForm(instance=user),
@@ -245,3 +246,135 @@ def create_chat_group(request):
 def about_view(request):
     about = About.objects.last()
     return render(request, 'about.html', {'about': about})
+
+
+
+
+
+# views.py
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+from .models import CustomUser, PrivateMessage
+from .forms import CustomUserFormRole, PrivateMessageForm
+
+@login_required
+@user_passes_test(lambda u: u.role == 'admin')  # فقط مدیران
+def admin_manage_students(request):
+    students = CustomUser.objects.filter(role='student')
+
+    # ویرایش یا حذف دانش‌آموز
+    if request.method == 'POST':
+        student_id = request.POST.get('student_id')
+        student = get_object_or_404(CustomUser, id=student_id)
+
+        if request.POST.get('action') == 'edit':
+            form = CustomUserFormRole(request.POST, instance=student)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'اطلاعات دانش‌آموز با موفقیت ویرایش شد!')
+
+        elif request.POST.get('action') == 'delete':
+            student.delete()
+            messages.success(request, 'دانش‌آموز با موفقیت حذف شد!')
+
+        elif request.POST.get('action') == 'message':
+            message_form = PrivateMessageForm(request.POST)
+            if message_form.is_valid():
+                message = message_form.save(commit=False)
+                message.sender = request.user  # فرستنده پیام مدیر است
+                message.receiver = student  # دریافت‌کننده پیام دانش‌آموز است
+                message.save()
+                messages.success(request, 'پیام با موفقیت ارسال شد!')
+
+        return redirect('admin_manage_students')
+
+    return render(request, 'admin_manage_students.html', {
+        'students': students,
+        'edit_form': CustomUserForm(),
+        'message_form': PrivateMessageForm(),
+    })
+
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+from .models import CustomUser, PrivateMessage
+from .forms import CustomUserFormRole2, PrivateMessageForm
+
+@login_required
+@user_passes_test(lambda u: u.role == 'admin')  # فقط برای مدیران
+def admin_manage_teachers(request):
+    teachers = CustomUser.objects.filter(role='teacher')
+
+    if request.method == 'POST':
+        teacher_id = request.POST.get('teacher_id')
+        teacher = get_object_or_404(CustomUser, id=teacher_id)
+
+        if request.POST.get('action') == 'edit':
+            form = CustomUserFormRole2(request.POST, instance=teacher)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'اطلاعات معلم با موفقیت ویرایش شد!')
+
+        elif request.POST.get('action') == 'delete':
+            teacher.delete()
+            messages.success(request, 'معلم با موفقیت حذف شد!')
+
+        elif request.POST.get('action') == 'message':
+            message_form = PrivateMessageForm(request.POST)
+            if message_form.is_valid():
+                message = message_form.save(commit=False)
+                message.sender = request.user
+                message.receiver = teacher
+                message.save()
+                messages.success(request, 'پیام با موفقیت ارسال شد!')
+
+        return redirect('admin_manage_teachers')
+
+    return render(request, 'admin_manage_teachers.html', {
+        'teachers': teachers,
+        'edit_form': CustomUserForm(),
+        'message_form': PrivateMessageForm(),
+    })
+
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib import messages
+from .models import ChatGroup, Message
+
+def is_admin(user):
+    return user.is_superuser or user.role == 'admin'
+
+@login_required
+@user_passes_test(is_admin)
+def manage_groups(request):
+    # دریافت تمام گروه‌ها و پیام‌های مربوط به هر گروه
+    groups = ChatGroup.objects.all().prefetch_related('messages')
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        group_id = request.POST.get('group_id')
+        group = get_object_or_404(ChatGroup, id=group_id)
+
+        if action == 'delete':
+            group.delete()
+            messages.success(request, f'گروه "{group.name}" با موفقیت حذف شد.')
+            return redirect('manage_groups')
+
+        elif action == 'edit':
+            new_name = request.POST.get('name')
+            new_desc = request.POST.get('description')
+            group.name = new_name
+            group.description = new_desc
+            group.save()
+            messages.success(request, f'گروه "{group.name}" ویرایش شد.')
+            return redirect('manage_groups')
+
+    # نمایش پیام‌های مربوط به هر گروه
+    for group in groups:
+        group.messages_list = Message.objects.filter(group=group).order_by('-timestamp')
+
+    context = {
+        'groups': groups,
+    }
+    return render(request, 'manage_groups_and_messages.html', context)
